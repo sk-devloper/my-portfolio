@@ -1,0 +1,21 @@
+{
+  "name": "snowbunny.dev - Portfolio",
+  "short_name": "snowbunny.dev",
+  "description": "A stunning, modern portfolio showcasing professional development skills",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "lang": "en",
+  "dir": "ltr"
+}
