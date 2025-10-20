@@ -274,7 +274,6 @@ const CardSwap: FC<CardSwapProps> = ({
 
     return cloneElement(childEl, {
       key: i,
-      ref: refs[i],
       style: { width, height, ...existingStyle },
       onClick: handleClick,
     });
