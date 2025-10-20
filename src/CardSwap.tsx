@@ -7,8 +7,10 @@ import React, {
   useMemo,
   useRef,
   type ReactNode,
-  type MouseEvent,
+  type MouseEvent as ReactMouseEvent,
   type FC,
+  type ReactElement,
+  type CSSProperties,
 } from 'react';
 import gsap from 'gsap';
 import './CardSwap.css';
@@ -75,6 +77,15 @@ interface CardSwapProps {
   children: ReactNode;
 }
 
+/**
+ * Props that we expect on each child card. This is intentionally minimal —
+ * extend if your children carry more specific props.
+ */
+type ChildProps = {
+  onClick?: (e: ReactMouseEvent<HTMLDivElement>) => void;
+  style?: CSSProperties;
+} & React.HTMLAttributes<HTMLDivElement>;
+
 const CardSwap: FC<CardSwapProps> = ({
   width = 500,
   height = 400,
@@ -87,8 +98,8 @@ const CardSwap: FC<CardSwapProps> = ({
   easing = 'elastic',
   children,
 }) => {
-  const config =
-    easing === 'elastic'
+  const config = useMemo(() => {
+    return easing === 'elastic'
       ? {
           ease: 'elastic.out(0.6,0.9)',
           durDrop: 2,
@@ -105,11 +116,13 @@ const CardSwap: FC<CardSwapProps> = ({
           promoteOverlap: 0.45,
           returnDelay: 0.2,
         };
+  }, [easing]);
 
   const childArr = useMemo(() => Children.toArray(children), [children]);
+
+  // stable refs array — one ref per child
   const refs = useMemo(
-    () =>
-      childArr.map(() => React.createRef<HTMLDivElement>()),
+    () => childArr.map(() => React.createRef<HTMLDivElement>()),
     [childArr]
   );
 
@@ -119,7 +132,7 @@ const CardSwap: FC<CardSwapProps> = ({
 
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const intervalRef = useRef<number | undefined>(undefined);
-  const container = useRef<HTMLDivElement>(null);
+  const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const total = refs.length;
@@ -132,6 +145,8 @@ const CardSwap: FC<CardSwapProps> = ({
 
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
+      if (!elFront) return;
+
       const tl = gsap.timeline();
       tlRef.current = tl;
 
@@ -142,8 +157,10 @@ const CardSwap: FC<CardSwapProps> = ({
       });
 
       tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
+
       rest.forEach((idx, i) => {
         const el = refs[idx].current;
+        if (!el) return;
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, 'promote');
         tl.to(
@@ -185,44 +202,83 @@ const CardSwap: FC<CardSwapProps> = ({
       });
     };
 
+    // initial swap + interval
     swap();
-    intervalRef.current = window.setInterval(swap, delay);
+    intervalRef.current = window.setInterval(swap, delay) as unknown as number;
 
+    // pause/resume on hover if requested
     if (pauseOnHover) {
       const node = container.current;
-      if (!node) return;
+      if (!node) return () => {
+        clearInterval(intervalRef.current);
+      };
+
       const pause = () => {
         tlRef.current?.pause();
-        clearInterval(intervalRef.current);
+        if (intervalRef.current !== undefined) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = undefined;
+        }
       };
       const resume = () => {
         tlRef.current?.play();
-        intervalRef.current = window.setInterval(swap, delay);
+        if (intervalRef.current === undefined) {
+          intervalRef.current = window.setInterval(swap, delay) as unknown as number;
+        }
       };
       node.addEventListener('mouseenter', pause);
       node.addEventListener('mouseleave', resume);
+
       return () => {
         node.removeEventListener('mouseenter', pause);
         node.removeEventListener('mouseleave', resume);
-        clearInterval(intervalRef.current);
+        if (intervalRef.current !== undefined) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = undefined;
+        }
       };
     }
-    return () => clearInterval(intervalRef.current);
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, refs, config.durDrop, config.durMove, config.durReturn, config.ease, config.promoteOverlap, config.returnDelay]);
 
-  const rendered = childArr.map((child, i) =>
-    isValidElement(child)
-      ? cloneElement(child as React.ReactElement<any>, {
-          key: i,
-          ref: refs[i],
-          style: { width, height, ...((child.props as any).style ?? {}) },
-          onClick: (e: MouseEvent<HTMLDivElement>) => {
-            (child.props as any).onClick?.(e);
-            onCardClick?.(i);
-          },
-        })
-      : child
-  );
+    return () => {
+      if (intervalRef.current !== undefined) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = undefined;
+      }
+    };
+    // NOTE: config is memoized above so it's safe to deconstruct here
+  }, [
+    cardDistance,
+    verticalDistance,
+    delay,
+    pauseOnHover,
+    skewAmount,
+    refs,
+    config.durDrop,
+    config.durMove,
+    config.durReturn,
+    config.ease,
+    config.promoteOverlap,
+    config.returnDelay,
+  ]);
+
+  const rendered = childArr.map((child, i) => {
+    if (!isValidElement(child)) return child;
+
+    // treat the child as a ReactElement with ChildProps so we can access style/onClick safely
+    const childEl = child as ReactElement<ChildProps>;
+    const existingStyle = childEl.props?.style ?? ({} as CSSProperties);
+    const handleClick = (e: ReactMouseEvent<HTMLDivElement>) => {
+      childEl.props?.onClick?.(e);
+      onCardClick?.(i);
+    };
+
+    return cloneElement(childEl, {
+      key: i,
+      ref: refs[i],
+      style: { width, height, ...existingStyle },
+      onClick: handleClick,
+    });
+  });
 
   return (
     <div ref={container} className="card-swap-container" style={{ width, height }}>
