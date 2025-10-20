@@ -11,7 +11,7 @@ const About: React.FC = () => {
     { number: "1+", label: "Year Experience" },
     { number: "10+", label: "Projects Completed" },
     { number: "5+", label: "Happy Clients" },
-    { number: "100%", label: "Learning Drive" },
+
   ];
 
   const achievements = [
@@ -59,10 +59,10 @@ const About: React.FC = () => {
                 I'm a backend developer with a strong foundation in Python, building robust APIs, automation workflows, and scalable systems. I'm constantly learning and expanding my toolkit, diving into C++, C#, and React to bridge the gap between back-end and front-end development.
               </p>
               <p>
-                I thrive on solving complex problems, exploring new technologies, and improving systems end-to-end. My work combines technical skill with creativity, and I'm always looking for ways to make software faster, smarter, and more efficient.
+                I thrive on solving complex problems, exploring new technologies, and improving systems end-to-end. My work combines technical skill with creativity.
               </p>
               <p>
-                Whether it's building automation tools, experimenting with embedded systems, or creating dynamic web applications, I approach every project with curiosity and a drive to learn. My portfolio reflects both my current capabilities and my ongoing journey as a developer.
+                Whether it's building automation tools, experimenting with embedded systems, or creating dynamic web applications.
               </p>
             </div>
 

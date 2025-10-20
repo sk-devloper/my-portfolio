@@ -51,14 +51,14 @@ const ThemeToggle: React.FC = () => {
           animate={{ opacity: isDark ? 1 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          🌙
+          
         </motion.span>
         <motion.span
           className="text-xs"
           animate={{ opacity: isDark ? 0 : 1 }}
           transition={{ duration: 0.2 }}
         >
-          ☀️
+          
         </motion.span>
       </div>
     </motion.button>

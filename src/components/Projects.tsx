@@ -12,7 +12,6 @@ const Projects: React.FC = () => {
       id: 1,
       title: "Node Infrastructure API",
       description: "Robust backend API for managing node infrastructure with automated monitoring, health checks, and performance analytics.",
-      image: "🖥️",
       technologies: ["Python", "FastAPI", "PostgreSQL", "Docker"],
       liveUrl: "#",
       githubUrl: "#",
@@ -22,7 +21,6 @@ const Projects: React.FC = () => {
       id: 2,
       title: "Automation Workflow System",
       description: "Python-based automation system for streamlining repetitive tasks and improving operational efficiency.",
-      image: "🤖",
       technologies: ["Python", "Celery", "Redis", "Linux"],
       liveUrl: "#",
       githubUrl: "#",
@@ -32,7 +30,6 @@ const Projects: React.FC = () => {
       id: 3,
       title: "Customer Support Portal",
       description: "Backend system for managing customer inquiries, ticket routing, and support analytics with real-time updates.",
-      image: "🎧",
       technologies: ["Python", "Django", "PostgreSQL", "WebSockets"],
       liveUrl: "#",
       githubUrl: "#",
@@ -42,7 +39,6 @@ const Projects: React.FC = () => {
       id: 4,
       title: "System Monitoring Tool",
       description: "Custom monitoring solution for tracking system performance, resource usage, and alerting on critical issues.",
-      image: "📊",
       technologies: ["Python", "C++", "Linux", "Docker"],
       liveUrl: "#",
       githubUrl: "#",
@@ -94,7 +90,6 @@ const Projects: React.FC = () => {
               whileHover={{ y: -10, scale: 1.02 }}
               className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300"
             >
-              <div className="text-4xl mb-4">{project.image}</div>
               <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
               <p className="text-gray-400 text-sm mb-4">{project.description}</p>
               
