@@ -44,7 +44,7 @@ const Skills: React.FC = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-slate-800 to-slate-900">
+    <section id="skills" className="py-20" style={{ background: '#0a0a0a' }}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}
@@ -64,7 +64,8 @@ const Skills: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
+            className="w-24 h-1 mx-auto mb-8"
+                        style={{ background: 'var(--primary-accent)' }}
           />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Building robust APIs, automation workflows, and scalable systems with a focus on backend excellence
@@ -79,6 +80,7 @@ const Skills: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, delay: 0.2 + categoryIndex * 0.2 }}
               className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              style={{ background: 'rgba(255,255,255,0.03)' }}
             >
               <h3 className="text-2xl font-bold text-white mb-8 text-center">
                 {category.title}
@@ -106,7 +108,8 @@ const Skills: React.FC = () => {
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
                         transition={{ duration: 1, delay: 0.6 + categoryIndex * 0.2 + skillIndex * 0.1 }}
-                        className="h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                        className="h-2 rounded-full"
+                        style={{ background: 'var(--primary-accent)' }}
                       />
                     </div>
                   </motion.div>
@@ -135,7 +138,7 @@ const Skills: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3, delay: 1 + index * 0.05 }}
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(168, 85, 247, 0.2)" }}
+                whileHover={{ scale: 1.1, backgroundColor: "rgba(59, 130, 246, 0.15)" }}
                 className="px-4 py-2 bg-white/10 rounded-full text-white text-sm border border-white/20 hover:border-purple-500/50 transition-all duration-300"
               >
                 {skill}

@@ -47,7 +47,7 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+    <section id="projects" className="py-20" style={{ background: '#0f0f0f' }}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}
@@ -67,7 +67,8 @@ const Projects: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
+            className="w-24 h-1 mx-auto mb-8"
+                        style={{ background: 'var(--primary-accent)' }}
           />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Backend systems and automation solutions built with Python, focusing on reliability and performance
@@ -108,7 +109,8 @@ const Projects: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex-1 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg text-sm font-medium"
+                  className="flex-1 py-2 text-white rounded-lg text-sm font-medium"
+                  style={{ background: 'var(--primary-accent)' }}
                 >
                   View Live
                 </motion.button>
@@ -135,7 +137,8 @@ const Projects: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full"
+            className="px-8 py-3 text-white font-semibold rounded-full"
+            style={{ background: 'var(--primary-accent)' }}
           >
             View All Projects
           </motion.button>

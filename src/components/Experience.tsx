@@ -26,7 +26,7 @@ const Experience: React.FC = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-gradient-to-b from-slate-800 to-slate-900">
+    <section id="experience" className="py-20" style={{ background: '#0a0a0a' }}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}
@@ -46,7 +46,8 @@ const Experience: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
+            className="w-24 h-1 mx-auto mb-8"
+                        style={{ background: 'var(--primary-accent)' }}
           />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Building experience through hands-on development, customer interaction, and continuous learning
@@ -56,7 +57,7 @@ const Experience: React.FC = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-pink-500 transform md:-translate-x-0.5" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 transform md:-translate-x-0.5" style={{ background: 'var(--primary-accent)', opacity: 0.4 }} />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -70,7 +71,7 @@ const Experience: React.FC = () => {
                 }`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transform -translate-x-2 md:-translate-x-2 z-10" />
+                <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full transform -translate-x-2 md:-translate-x-2 z-10" style={{ background: 'var(--primary-accent)' }} />
 
                 {/* Content */}
                 <div className={`ml-16 md:ml-0 md:w-1/2 ${
@@ -84,7 +85,7 @@ const Experience: React.FC = () => {
                       <h3 className="text-2xl font-bold text-white mb-2 sm:mb-0">
                         {exp.title}
                       </h3>
-                      <span className="text-purple-400 font-semibold text-sm">
+                      <span className="font-semibold text-sm" style={{ color: '#60a5fa' }}>
                         {exp.period}
                       </span>
                     </div>
@@ -113,7 +114,7 @@ const Experience: React.FC = () => {
                             transition={{ duration: 0.5, delay: 0.4 + index * 0.2 + achIndex * 0.1 }}
                             className="flex items-start space-x-2 text-gray-400 text-sm"
                           >
-                            <span className="text-purple-400 mt-1">•</span>
+                            <span style={{ color: '#60a5fa' }} className="mt-1">•</span>
                             <span>{achievement}</span>
                           </motion.li>
                         ))}
@@ -129,7 +130,8 @@ const Experience: React.FC = () => {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                             transition={{ duration: 0.3, delay: 0.6 + index * 0.2 + techIndex * 0.05 }}
-                            className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full border border-purple-500/30"
+                            className="px-3 py-1 text-xs rounded-full border"
+                            style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#93c5fd', borderColor: 'rgba(59, 130, 246, 0.3)' }}
                           >
                             {tech}
                           </motion.span>

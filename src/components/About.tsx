@@ -22,7 +22,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+    <section id="about" className="py-20" style={{ background: '#0f0f0f' }}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}
@@ -42,7 +42,8 @@ const About: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
+            className="w-24 h-1 mx-auto mb-8"
+                        style={{ background: 'var(--primary-accent)' }}
           />
         </motion.div>
 
@@ -100,8 +101,8 @@ const About: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               className="relative w-80 h-80 mx-auto"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl blur-xl opacity-30" />
-              <div className="relative w-full h-full bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center border border-white/20">
+              <div className="absolute inset-0 rounded-2xl blur-xl opacity-20" style={{ background: 'var(--primary-accent)' }} />
+              <div className="relative w-full h-full rounded-2xl flex items-center justify-center border border-white/10" style={{ background: '#1a1a1a' }}>
                 <div className="text-8xl">👨‍💻</div>
               </div>
             </motion.div>

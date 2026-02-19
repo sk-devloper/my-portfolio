@@ -28,24 +28,27 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ background: '#0a0a0a' }}
     >
       <ParticleBackground />
-      {/* Animated background */}
+      {/* Subtle animated background glow */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+          className="absolute w-96 h-96 rounded-full"
+          style={{ background: 'rgba(59, 130, 246, 0.06)', filter: 'blur(80px)' }}
           animate={{
-            x: mousePosition.x * 2,
-            y: mousePosition.y * 2,
+            x: mousePosition.x * 1.5,
+            y: mousePosition.y * 1.5,
           }}
           transition={{ type: "spring", stiffness: 50, damping: 15 }}
         />
         <motion.div
-          className="absolute w-64 h-64 bg-pink-500/20 rounded-full blur-3xl"
+          className="absolute w-64 h-64 rounded-full"
+          style={{ background: 'rgba(59, 130, 246, 0.04)', filter: 'blur(60px)' }}
           animate={{
-            x: mousePosition.x * -1.5,
-            y: mousePosition.y * -1.5,
+            x: mousePosition.x * -1,
+            y: mousePosition.y * -1,
           }}
           transition={{ type: "spring", stiffness: 50, damping: 15 }}
         />
@@ -101,10 +104,11 @@ const Hero: React.FC = () => {
           className="flex flex-col sm:flex-row gap-6 justify-center items-center"
         >
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(168, 85, 247, 0.4)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToNext}
-            className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full text-lg transition-all duration-300"
+            style={{ background: 'var(--primary-accent)' }}
+            className="px-8 py-4 text-white font-semibold rounded-full text-lg transition-all duration-300"
           >
             View My Work
           </motion.button>
@@ -139,29 +143,6 @@ const Hero: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Floating elements */}
-      <motion.div
-        className="absolute top-20 left-10 text-6xl opacity-20"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      >
-        ⚡
-      </motion.div>
-      <motion.div
-        className="absolute top-40 right-20 text-4xl opacity-20"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 3, repeat: Infinity }}
-      >
-        🚀
-      </motion.div>
-      <motion.div
-        className="absolute bottom-40 left-20 text-5xl opacity-20"
-        animate={{ rotate: [0, 10, -10, 0] }}
-        transition={{ duration: 4, repeat: Infinity }}
-      >
-        💻
-      </motion.div>
     </section>
   );
 };

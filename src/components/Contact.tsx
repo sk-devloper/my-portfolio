@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-slate-900 to-black">
+    <section id="contact" className="py-20" style={{ background: '#0f0f0f' }}>
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}
@@ -108,7 +108,8 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
+            className="w-24 h-1 mx-auto mb-8"
+                        style={{ background: 'var(--primary-accent)' }}
           />
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
@@ -200,7 +201,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors duration-300"
+                    className="form-input w-full px-4 py-3 rounded-lg placeholder-gray-400"
                     placeholder="Your name"
                   />
                 </motion.div>
@@ -217,7 +218,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors duration-300"
+                    className="form-input w-full px-4 py-3 rounded-lg placeholder-gray-400"
                     placeholder="your@email.com"
                   />
                 </motion.div>
@@ -235,7 +236,7 @@ const Contact: React.FC = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors duration-300"
+                  className="form-input w-full px-4 py-3 rounded-lg placeholder-gray-400"
                   placeholder="What's this about?"
                 />
               </motion.div>
@@ -252,7 +253,7 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors duration-300 resize-none"
+                  className="form-input w-full px-4 py-3 rounded-lg placeholder-gray-400 resize-none"
                   placeholder="Tell me about your project..."
                 />
               </motion.div>
@@ -265,7 +266,8 @@ const Contact: React.FC = () => {
                 transition={{ duration: 0.5, delay: 1 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 text-white font-semibold rounded-lg text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ background: 'var(--primary-accent)' }}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </motion.button>

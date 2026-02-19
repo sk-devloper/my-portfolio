@@ -63,13 +63,14 @@ const ParticleBackground: React.FC = () => {
       {particles.map(particle => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-gradient-to-r from-purple-400 to-pink-400"
+          className="absolute rounded-full"
           style={{
             left: particle.x,
             top: particle.y,
             width: particle.size,
             height: particle.size,
-            opacity: particle.opacity,
+            opacity: particle.opacity * 0.5,
+            background: 'var(--primary-accent)',
           }}
           animate={{
             scale: [1, 1.2, 1],

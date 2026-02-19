@@ -13,7 +13,7 @@ const App: React.FC = () => {
 
   if (!loadingDone) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="flex items-center justify-center h-screen" style={{ background: '#0a0a0a' }}>
         <div className="text-center">
           <BlurText
             text="Welcome to snowbunny.dev"
@@ -27,7 +27,7 @@ const App: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
-            className="text-xl text-gray-300"
+            className="text-xl text-gray-400"
           >
             Building Robust Systems
           </motion.div>
