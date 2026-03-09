@@ -40,9 +40,10 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
       transition={{ duration: 0.8, delay: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-black/80 backdrop-blur-md border-b border-white/10"
+          ? "backdrop-blur-md border-b border-white/10"
           : "bg-transparent"
       }`}
+      style={isScrolled ? { background: 'rgba(10, 10, 10, 0.85)' } : undefined}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -71,7 +72,8 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg -z-10"
+                    className="absolute inset-0 rounded-lg -z-10"
+                    style={{ background: 'rgba(59, 130, 246, 0.15)', border: '1px solid rgba(59, 130, 246, 0.3)' }}
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
